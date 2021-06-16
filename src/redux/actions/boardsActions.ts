@@ -19,12 +19,12 @@ interface CreateBoardAction {
 }
 
 interface CreateBoardSuccessAction {
-      type: ActionTypes.CREATE_BOARD;
-      payload: object;
+      type: ActionTypes.CREATE_BOARD_SUCCESS;
+      payload: object[];
 }
 
 interface CreateBoardErrorAction {
-      type: ActionTypes.CREATE_BOARD;
+      type: ActionTypes.CREATE_BOARD_ERROR;
       payload: string;
 }
 

@@ -38,6 +38,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                         ),
                   );
             }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [searchInput]);
 
       return (

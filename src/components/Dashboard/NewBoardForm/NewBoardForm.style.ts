@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-interface WrapperType {
+interface WrapperProps {
       isOpened: boolean;
 }
 
-export const Wrapper = styled.div<WrapperType>`
-      display: ${(props: WrapperType) => (props.isOpened ? "block" : "none")};
+export const Wrapper = styled.div<WrapperProps>`
+      display: ${(props: WrapperProps) => (props.isOpened ? "block" : "none")};
 `;
 
 export const Overlay = styled.div`
@@ -47,4 +47,8 @@ export const SubmitBoardButton = styled.button`
       width: 100px;
       height: 30px;
       border-radius: 5px;
+      &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+      }
 `;

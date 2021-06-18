@@ -12,7 +12,7 @@ interface BoardLinkProps {
       board: Board;
 }
 
-const BoardLink: React.FC<BoardLinkProps> = ({ board }: BoardLinkProps) => {
+const BoardLink: React.FC<BoardLinkProps> = ({ board }): JSX.Element => {
       const boardSlug = slugify(board.name);
       const shortLink = board.shortUrl.split("/").pop();
       return (

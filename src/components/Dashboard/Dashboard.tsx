@@ -6,7 +6,7 @@ import BoardLink from "./BoardLink/BoardLink";
 import NewBoardForm from "./NewBoardForm/NewBordForm";
 import { DashboardStyled, NewBoard } from "./Dashboard.style";
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC = (): JSX.Element => {
       const { getAllBoards } = useActions();
       const { boards, error, loading } = useTypedSelector(
             (state) => state.boards,

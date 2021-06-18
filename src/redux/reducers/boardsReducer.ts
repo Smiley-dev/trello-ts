@@ -4,36 +4,40 @@ import { Action } from "../actions/boardsActions";
 interface BoardsState {
       loading: boolean;
       error: string | null;
-      data: object[] | any;
+      boards: object[];
 }
 
 const initialState: BoardsState = {
       loading: false,
       error: null,
-      data: [],
+      boards: [],
 };
 
 const reducer = (state: BoardsState = initialState, action: Action) => {
       switch (action.type) {
             case ActionTypes.GET_ALL_BOARDS:
-                  return { loading: true, error: null, data: [] };
+                  return { loading: true, error: null, boards: [] };
             case ActionTypes.GET_ALL_BOARDS_SUCCESS:
-                  return { loading: false, error: null, data: action.payload };
+                  return {
+                        loading: false,
+                        error: null,
+                        boards: action.payload,
+                  };
             case ActionTypes.GET_ALL_BOARDS_ERROR:
-                  return { loading: false, error: action.payload, data: [] };
+                  return { loading: false, error: action.payload, boards: [] };
             case ActionTypes.CREATE_BOARD:
-                  return { loading: false, error: null, data: state.data };
+                  return { loading: false, error: null, boards: state.boards };
             case ActionTypes.CREATE_BOARD_SUCCESS:
                   return {
                         loading: false,
                         error: null,
-                        data: [...state.data, action.payload],
+                        boards: [...state.boards, action.payload],
                   };
             case ActionTypes.CREATE_BOARD_ERROR:
                   return {
                         loading: false,
                         error: action.payload,
-                        data: state.data,
+                        boards: state.boards,
                   };
             default:
                   return state;

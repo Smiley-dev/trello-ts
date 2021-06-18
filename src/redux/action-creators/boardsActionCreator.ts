@@ -3,21 +3,26 @@ import { Dispatch } from "redux";
 import { ActionTypes } from "../action-types";
 import { Action } from "../actions/boardsActions";
 
+import { filterResponse } from "../../utils/filterResponse";
+
 export const getAllBoards = () => {
-      console.log("akcija");
       return async (dispatch: Dispatch<Action>) => {
             dispatch({
                   type: ActionTypes.GET_ALL_BOARDS,
             });
-            console.log("akcija");
+
             try {
                   const { data } = await boardsInstance.get(
                         "/members/me/boards",
                   );
 
+                  const filterValues = ["id", "name", "shortUrl"];
+
+                  const filteredData = filterResponse(data, filterValues);
+
                   dispatch({
                         type: ActionTypes.GET_ALL_BOARDS_SUCCESS,
-                        payload: data,
+                        payload: filteredData,
                   });
             } catch (err) {
                   console.log(err);

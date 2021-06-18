@@ -1,34 +1,27 @@
-import React, { useEffect } from "react";
-import { useActions } from "../../hooks/useActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
+import React from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Board from "../Board/Board";
+import Dashboard from "../Dashboard/Dashboard";
+import Navbar from "../Navbar/Navbar";
+
+import GlobalStyle from "../../theme/globalStyles";
+import { AppStyled } from "./AppStyles";
 
 const App: React.FC = () => {
-      const { getAllBoards, createBoard } = useActions();
-      const { data, error, loading } = useTypedSelector(
-            (state) => state.boards,
-      );
-
-      useEffect(() => {
-            getAllBoards();
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
-
       return (
-            <div>
-                  {error && <h3>{error}</h3>}
-                  {loading && <h3>Loading...</h3>}
-                  {!error &&
-                        !loading &&
-                        data.map((board: any) => (
-                              <div>
-                                    {board.name}
-                                    <p>{board.id}</p>
-                              </div>
-                        ))}
-                  <button onClick={() => createBoard("New Board")}>
-                        new Board
-                  </button>
-            </div>
+            <AppStyled>
+                  <GlobalStyle />
+                  <Router>
+                        <Navbar />
+                        <Switch>
+                              <Route path="/" exact component={Dashboard} />
+                              <Route
+                                    path="/board/:shortUrl/:name"
+                                    component={Board}
+                              />
+                        </Switch>
+                  </Router>
+            </AppStyled>
       );
 };
 

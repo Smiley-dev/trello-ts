@@ -23,8 +23,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 }): JSX.Element => {
       const { boards } = useTypedSelector((state) => state.boards);
       const [searchInput, setSearchInput] = useState<string>("");
-      const [filteredBoards, setFilteredBoards] =
-            useState<object[] | []>(boards);
+      const [filteredBoards, setFilteredBoards] = useState<object[]>(boards);
 
       useEffect(() => {
             if (searchInput === "") {
@@ -38,8 +37,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                         ),
                   );
             }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [searchInput]);
+      }, [searchInput, boards]);
 
       return (
             <DropdownContainer isOpened={isOpened}>

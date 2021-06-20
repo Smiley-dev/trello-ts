@@ -28,10 +28,16 @@ interface CreateBoardErrorAction {
       payload: string;
 }
 
+interface SetActiveBoardAction {
+      type: ActionTypes.SET_ACTIVE_BOARD;
+      payload: string;
+}
+
 export type Action =
       | GetAllBoardsAction
       | GetAllBoardsSuccessAction
       | GetAllBoardsErrorAction
       | CreateBoardAction
       | CreateBoardSuccessAction
-      | CreateBoardErrorAction;
+      | CreateBoardErrorAction
+      | SetActiveBoardAction;

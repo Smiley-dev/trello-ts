@@ -59,3 +59,12 @@ export const createBoard = (name: string) => {
             }
       };
 };
+
+export const setActiveBoard = (id: string) => {
+      return (dispatch: Dispatch<Action>) => {
+            dispatch({
+                  type: ActionTypes.SET_ACTIVE_BOARD,
+                  payload: id,
+            });
+      };
+};

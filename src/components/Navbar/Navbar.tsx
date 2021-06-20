@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
       NavbarStyled,
       LeftNavSection,
@@ -17,8 +17,29 @@ import Dropdown from "./Dropdown/Dropdown";
 
 const Navbar: React.FC = (): JSX.Element => {
       const [dropdownOpened, setDrodownOpened] = useState<boolean>(false);
+      const ref = useRef<HTMLDivElement>(null);
+
+      useEffect(() => {
+            const checkIfClickedOutside = (e: any) => {
+                  if (
+                        dropdownOpened &&
+                        ref.current &&
+                        !ref.current.contains(e.target)
+                  ) {
+                        setDrodownOpened(false);
+                  }
+            };
+            document.addEventListener("mousedown", checkIfClickedOutside);
+            return () => {
+                  document.removeEventListener(
+                        "mousedown",
+                        checkIfClickedOutside,
+                  );
+            };
+      }, [dropdownOpened]);
+
       return (
-            <>
+            <div ref={ref}>
                   <NavbarStyled>
                         <LeftNavSection>
                               <HomeLink to="/">
@@ -42,7 +63,7 @@ const Navbar: React.FC = (): JSX.Element => {
                         isOpened={dropdownOpened}
                         setIsOpened={setDrodownOpened}
                   />
-            </>
+            </div>
       );
 };
 

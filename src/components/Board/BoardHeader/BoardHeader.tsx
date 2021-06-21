@@ -20,10 +20,11 @@ const BoardHeader: React.FC<BoardHeaderProps> = ({
       const [boardTitleFormOpened, setBoardTitleFormOpened] =
             useState<boolean>(false);
       const [updateFormValue, setUpdateFormValue] = useState(boardName);
-      const { deleteBoard } = useActions();
+      const { deleteBoard, updateBoard } = useActions();
       const history = useHistory();
 
-      const handleSubmit = (e: any) => {
+      const handleSubmit = () => {
+            updateBoard(updateFormValue, boardId);
             setBoardTitleFormOpened(false);
       };
 

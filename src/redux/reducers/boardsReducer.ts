@@ -59,6 +59,34 @@ const reducer = (state: BoardsState = initialState, action: Action) => {
                         activeBoard: null,
                         boards: state.boards,
                   };
+            case ActionTypes.UPDATE_BOARD:
+                  return {
+                        loading: true,
+                        error: null,
+                        activeBoard: state.activeBoard,
+                        boards: state.boards,
+                  };
+            case ActionTypes.UPDATE_BOARD_SUCCESS:
+                  const updatedBoards = state.boards.map((board: any) => {
+                        if (board.id === action.payload.boardId) {
+                              board.name = action.payload.boardName;
+                              return board;
+                        }
+                        return board;
+                  });
+                  return {
+                        loading: true,
+                        error: null,
+                        activeBoard: state.activeBoard,
+                        boards: updatedBoards,
+                  };
+            case ActionTypes.UPDATE_BOARD_ERROR:
+                  return {
+                        loading: true,
+                        error: action.payload,
+                        activeBoard: null,
+                        boards: state.boards,
+                  };
             case ActionTypes.DELETE_BOARD:
                   return {
                         loading: true,
@@ -67,7 +95,6 @@ const reducer = (state: BoardsState = initialState, action: Action) => {
                         boards: state.boards,
                   };
             case ActionTypes.DELETE_BOARD_SUCCESS:
-                  console.log(action.payload);
                   const newState = state.boards.filter((board: any) => {
                         return board.id !== action.payload;
                   });
@@ -78,7 +105,6 @@ const reducer = (state: BoardsState = initialState, action: Action) => {
                         boards: newState,
                   };
             case ActionTypes.DELETE_BOARD_ERROR:
-                  console.log(action.payload);
                   return {
                         loading: false,
                         error: action.payload,

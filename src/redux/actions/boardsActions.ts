@@ -28,6 +28,20 @@ interface CreateBoardErrorAction {
       payload: string;
 }
 
+interface UpdateBoardAction {
+      type: ActionTypes.UPDATE_BOARD;
+}
+
+interface UpdateBoardSuccessAction {
+      type: ActionTypes.UPDATE_BOARD_SUCCESS;
+      payload: { boardName: string; boardId: string };
+}
+
+interface UpdateBoardErrorAction {
+      type: ActionTypes.UPDATE_BOARD_ERROR;
+      payload: string;
+}
+
 interface DeleteBoardAction {
       type: ActionTypes.DELETE_BOARD;
 }
@@ -57,4 +71,7 @@ export type Action =
       | SetActiveBoardAction
       | DeleteBoardAction
       | DeleteBoardSuccessAction
-      | DeleteBoardErrorAction;
+      | DeleteBoardErrorAction
+      | UpdateBoardAction
+      | UpdateBoardSuccessAction
+      | UpdateBoardErrorAction;

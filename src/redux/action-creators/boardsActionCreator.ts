@@ -60,6 +60,36 @@ export const createBoard = (name: string) => {
       };
 };
 
+export const updateBoard = (boardName: string, boardId: string) => {
+      return async (dispatch: Dispatch<Action>) => {
+            dispatch({
+                  type: ActionTypes.UPDATE_BOARD,
+            });
+
+            try {
+                  const { data } = await boardsInstance.put(
+                        `/boards/${boardId}`,
+                        null,
+                        {
+                              params: {
+                                    name: boardName,
+                              },
+                        },
+                  );
+
+                  dispatch({
+                        type: ActionTypes.UPDATE_BOARD_SUCCESS,
+                        payload: { boardName, boardId },
+                  });
+            } catch (err) {
+                  dispatch({
+                        type: ActionTypes.UPDATE_BOARD_ERROR,
+                        payload: err.message,
+                  });
+            }
+      };
+};
+
 export const deleteBoard = (boardId: string) => {
       return async (dispatch: Dispatch<Action>) => {
             dispatch({
@@ -67,9 +97,7 @@ export const deleteBoard = (boardId: string) => {
             });
 
             try {
-                  const { data } = await boardsInstance.delete(
-                        `/boards/${boardId}`,
-                  );
+                  await boardsInstance.delete(`/boards/${boardId}`);
 
                   dispatch({
                         type: ActionTypes.DELETE_BOARD_SUCCESS,

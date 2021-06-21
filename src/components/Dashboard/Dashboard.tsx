@@ -21,6 +21,8 @@ const Dashboard: React.FC = (): JSX.Element => {
             // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
+      if (error) return <div>Error</div>;
+      if (loading) return <div>Loading</div>;
       return (
             <DashboardStyled>
                   {boards.map((board: any) => {

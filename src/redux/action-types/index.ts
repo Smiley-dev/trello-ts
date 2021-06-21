@@ -18,4 +18,12 @@ export enum ActionTypes {
       GET_ALL_LISTS,
       GET_ALL_LISTS_SUCCESS,
       GET_ALL_LISTS_ERROR,
+      ADD_LIST,
+      ADD_LIST_SUCCESS,
+      ADD_LIST_ERROR,
+
+      //Cards
+      GET_ALL_CARDS,
+      GET_ALL_CARDS_SUCCESS,
+      GET_ALL_CARDS_ERROR,
 }

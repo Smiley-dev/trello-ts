@@ -33,6 +33,24 @@ const reducer = (state: ListsState = initialState, action: Action) => {
                         error: action.payload,
                         lists: state.lists,
                   };
+            case ActionTypes.ADD_LIST:
+                  return {
+                        loading: true,
+                        error: null,
+                        lists: state.lists,
+                  };
+            case ActionTypes.ADD_LIST_SUCCESS:
+                  return {
+                        loading: false,
+                        error: null,
+                        lists: [...state.lists, action.payload],
+                  };
+            case ActionTypes.ADD_LIST_ERROR:
+                  return {
+                        loading: false,
+                        error: action.payload,
+                        lists: state.lists,
+                  };
             default:
                   return state;
       }

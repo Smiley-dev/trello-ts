@@ -6,7 +6,8 @@ interface GetAllListsAction {
 
 interface GetAllListsSuccessAction {
       type: ActionTypes.GET_ALL_LISTS_SUCCESS;
-      payload: object[];
+      //TODO:
+      payload: any;
 }
 
 interface GetAllListsErrorAction {
@@ -14,7 +15,24 @@ interface GetAllListsErrorAction {
       payload: string;
 }
 
+interface AddListAction {
+      type: ActionTypes.ADD_LIST;
+}
+
+interface AddListSuccessAction {
+      type: ActionTypes.ADD_LIST_SUCCESS;
+      payload: object[];
+}
+
+interface AddListErrorAction {
+      type: ActionTypes.ADD_LIST_ERROR;
+      payload: string;
+}
+
 export type Action =
       | GetAllListsAction
       | GetAllListsSuccessAction
-      | GetAllListsErrorAction;
+      | GetAllListsErrorAction
+      | AddListAction
+      | AddListSuccessAction
+      | AddListErrorAction;

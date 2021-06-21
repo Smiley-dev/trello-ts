@@ -7,7 +7,7 @@ import NewBoardForm from "./NewBoardForm/NewBordForm";
 import { DashboardStyled, NewBoard } from "./Dashboard.style";
 
 const Dashboard: React.FC = (): JSX.Element => {
-      const { getAllBoards } = useActions();
+      const { getAllBoards, setActiveBoard } = useActions();
       const { boards, error, loading } = useTypedSelector(
             (state) => state.boards,
       );
@@ -17,6 +17,7 @@ const Dashboard: React.FC = (): JSX.Element => {
 
       useEffect(() => {
             if (boards.length === 0) getAllBoards();
+            setActiveBoard(null);
             // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useActions } from "../../../hooks/useActions";
+import { useHistory } from "react-router";
 import {
       BoardHeaderStyled,
       UpdateBoardForm,
@@ -8,14 +10,18 @@ import {
 
 interface BoardHeaderProps {
       boardName: string;
+      boardId: string;
 }
 
 const BoardHeader: React.FC<BoardHeaderProps> = ({
       boardName,
+      boardId,
 }): JSX.Element => {
       const [boardTitleFormOpened, setBoardTitleFormOpened] =
             useState<boolean>(false);
       const [updateFormValue, setUpdateFormValue] = useState(boardName);
+      const { deleteBoard } = useActions();
+      const history = useHistory();
 
       const handleSubmit = (e: any) => {
             setBoardTitleFormOpened(false);
@@ -23,6 +29,11 @@ const BoardHeader: React.FC<BoardHeaderProps> = ({
 
       const handleFormValueChange = (e: any) => {
             if (e.target.value !== "") setUpdateFormValue(e.target.value);
+      };
+
+      const handleDelete = () => {
+            deleteBoard(boardId);
+            history.push("/");
       };
 
       return (
@@ -42,7 +53,7 @@ const BoardHeader: React.FC<BoardHeaderProps> = ({
                         </BoardTitle>
                   )}
 
-                  <DeleteBoard>Delete Board</DeleteBoard>
+                  <DeleteBoard onClick={handleDelete}>Delete Board</DeleteBoard>
             </BoardHeaderStyled>
       );
 };

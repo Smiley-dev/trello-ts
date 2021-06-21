@@ -60,7 +60,31 @@ export const createBoard = (name: string) => {
       };
 };
 
-export const setActiveBoard = (id: string) => {
+export const deleteBoard = (boardId: string) => {
+      return async (dispatch: Dispatch<Action>) => {
+            dispatch({
+                  type: ActionTypes.DELETE_BOARD,
+            });
+
+            try {
+                  const { data } = await boardsInstance.delete(
+                        `/boards/${boardId}`,
+                  );
+
+                  dispatch({
+                        type: ActionTypes.DELETE_BOARD_SUCCESS,
+                        payload: boardId,
+                  });
+            } catch (err) {
+                  dispatch({
+                        type: ActionTypes.DELETE_BOARD_ERROR,
+                        payload: err.message,
+                  });
+            }
+      };
+};
+
+export const setActiveBoard = (id: string | null) => {
       return (dispatch: Dispatch<Action>) => {
             dispatch({
                   type: ActionTypes.SET_ACTIVE_BOARD,

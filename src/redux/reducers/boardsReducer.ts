@@ -40,7 +40,7 @@ const reducer = (state: BoardsState = initialState, action: Action) => {
                   };
             case ActionTypes.CREATE_BOARD:
                   return {
-                        loading: false,
+                        loading: true,
                         error: null,
                         activeBoard: null,
                         boards: state.boards,
@@ -59,6 +59,33 @@ const reducer = (state: BoardsState = initialState, action: Action) => {
                         activeBoard: null,
                         boards: state.boards,
                   };
+            case ActionTypes.DELETE_BOARD:
+                  return {
+                        loading: true,
+                        error: null,
+                        activeBoard: state.activeBoard,
+                        boards: state.boards,
+                  };
+            case ActionTypes.DELETE_BOARD_SUCCESS:
+                  console.log(action.payload);
+                  const newState = state.boards.filter((board: any) => {
+                        return board.id !== action.payload;
+                  });
+                  return {
+                        loading: false,
+                        error: null,
+                        activeBoard: null,
+                        boards: newState,
+                  };
+            case ActionTypes.DELETE_BOARD_ERROR:
+                  console.log(action.payload);
+                  return {
+                        loading: false,
+                        error: action.payload,
+                        activeBoard: state.activeBoard,
+                        boards: state.boards,
+                  };
+
             case ActionTypes.SET_ACTIVE_BOARD:
                   return {
                         loading: false,

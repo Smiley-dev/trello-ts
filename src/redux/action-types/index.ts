@@ -5,5 +5,8 @@ export enum ActionTypes {
       CREATE_BOARD,
       CREATE_BOARD_SUCCESS,
       CREATE_BOARD_ERROR,
+      DELETE_BOARD,
+      DELETE_BOARD_SUCCESS,
+      DELETE_BOARD_ERROR,
       SET_ACTIVE_BOARD,
 }

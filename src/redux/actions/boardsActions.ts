@@ -28,9 +28,23 @@ interface CreateBoardErrorAction {
       payload: string;
 }
 
+interface DeleteBoardAction {
+      type: ActionTypes.DELETE_BOARD;
+}
+
+interface DeleteBoardSuccessAction {
+      type: ActionTypes.DELETE_BOARD_SUCCESS;
+      payload: string;
+}
+
+interface DeleteBoardErrorAction {
+      type: ActionTypes.DELETE_BOARD_ERROR;
+      payload: string;
+}
+
 interface SetActiveBoardAction {
       type: ActionTypes.SET_ACTIVE_BOARD;
-      payload: string;
+      payload: string | null;
 }
 
 export type Action =
@@ -40,4 +54,7 @@ export type Action =
       | CreateBoardAction
       | CreateBoardSuccessAction
       | CreateBoardErrorAction
-      | SetActiveBoardAction;
+      | SetActiveBoardAction
+      | DeleteBoardAction
+      | DeleteBoardSuccessAction
+      | DeleteBoardErrorAction;

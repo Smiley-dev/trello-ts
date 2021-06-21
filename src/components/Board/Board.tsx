@@ -13,7 +13,11 @@ const Board: React.FC = () => {
       const { boardName, boardId }: { boardName: string; boardId: string } =
             location.state;
 
-      const { setActiveBoard } = useActions();
+      const { setActiveBoard, getAllLists } = useActions();
+
+      useEffect(() => {
+            getAllLists(boardId);
+      });
 
       useEffect(() => {
             setActiveBoard(boardId);

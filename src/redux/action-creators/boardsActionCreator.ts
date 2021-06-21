@@ -47,9 +47,13 @@ export const createBoard = (name: string) => {
                         },
                   });
 
+                  const filterValues = ["id", "name", "shortUrl"];
+
+                  const filteredData = filterResponse(data, filterValues);
+
                   dispatch({
                         type: ActionTypes.CREATE_BOARD_SUCCESS,
-                        payload: data,
+                        payload: filteredData,
                   });
             } catch (err) {
                   dispatch({
@@ -67,15 +71,11 @@ export const updateBoard = (boardName: string, boardId: string) => {
             });
 
             try {
-                  const { data } = await boardsInstance.put(
-                        `/boards/${boardId}`,
-                        null,
-                        {
-                              params: {
-                                    name: boardName,
-                              },
+                  await boardsInstance.put(`/boards/${boardId}`, null, {
+                        params: {
+                              name: boardName,
                         },
-                  );
+                  });
 
                   dispatch({
                         type: ActionTypes.UPDATE_BOARD_SUCCESS,

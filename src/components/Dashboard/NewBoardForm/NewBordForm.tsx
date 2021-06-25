@@ -16,6 +16,8 @@ interface NewBoardFormProps {
       setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+//TODO: Redirect to new board once it is created
+
 const NewBordForm: React.FC<NewBoardFormProps> = ({
       isOpened,
       setIsOpened,

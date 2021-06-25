@@ -7,6 +7,7 @@ import Navbar from "../Navbar/Navbar";
 import GlobalStyle from "../../theme/globalStyles";
 import { AppStyled } from "./AppStyles";
 
+//TODO: Solve error and loading
 const App: React.FC = () => {
       return (
             <AppStyled>

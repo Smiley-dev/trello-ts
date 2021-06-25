@@ -3,8 +3,6 @@ import { Dispatch } from "redux";
 import { ActionTypes } from "../action-types";
 import { Action } from "../actions/boardsActions";
 
-import { filterResponse } from "../../utils/filterResponse";
-
 export const getAllBoards = () => {
       return async (dispatch: Dispatch<Action>) => {
             dispatch({
@@ -16,13 +14,9 @@ export const getAllBoards = () => {
                         "/members/me/boards",
                   );
 
-                  const filterValues = ["id", "name", "shortUrl"];
-
-                  const filteredData = filterResponse(data, filterValues);
-
                   dispatch({
                         type: ActionTypes.GET_ALL_BOARDS_SUCCESS,
-                        payload: filteredData,
+                        payload: data,
                   });
             } catch (err) {
                   console.log(err);
@@ -47,13 +41,9 @@ export const createBoard = (name: string) => {
                         },
                   });
 
-                  const filterValues = ["id", "name", "shortUrl"];
-
-                  const filteredData = filterResponse(data, filterValues);
-
                   dispatch({
                         type: ActionTypes.CREATE_BOARD_SUCCESS,
-                        payload: filteredData,
+                        payload: data,
                   });
             } catch (err) {
                   dispatch({

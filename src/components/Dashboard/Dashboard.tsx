@@ -16,13 +16,11 @@ const Dashboard: React.FC = (): JSX.Element => {
             useState<boolean>(false);
 
       useEffect(() => {
-            if (boards.length === 0) getAllBoards();
+            getAllBoards();
             setActiveBoard(null);
             // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
-      if (error) return <div>Error</div>;
-      if (loading) return <div>Loading</div>;
       return (
             <DashboardStyled>
                   {boards.map((board: any) => {

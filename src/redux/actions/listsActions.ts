@@ -6,7 +6,6 @@ interface GetAllListsAction {
 
 interface GetAllListsSuccessAction {
       type: ActionTypes.GET_ALL_LISTS_SUCCESS;
-      //TODO:
       payload: any;
 }
 

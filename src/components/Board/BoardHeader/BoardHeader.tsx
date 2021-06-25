@@ -8,6 +8,8 @@ import {
       BoardTitle,
 } from "./BoardHeader.style";
 
+//TODO: Fix board title
+
 interface BoardHeaderProps {
       boardName: string;
       boardId: string;

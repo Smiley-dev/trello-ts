@@ -1,5 +1,6 @@
 import listsInstance from "../../axios/listsInstance";
 import boardsInstance from "../../axios/boardsInstance";
+import cardsInstance from "../../axios/cardsInstance";
 import { Dispatch } from "redux";
 import { ActionTypes } from "../action-types";
 import { Action } from "../actions/listsActions";
@@ -66,6 +67,32 @@ export const addList = (title: string, idBoard: string) => {
                   dispatch({
                         type: ActionTypes.ADD_LIST_ERROR,
                         payload: err.message,
+                  });
+            }
+      };
+};
+
+export const addCard = (title: string, idList: string) => {
+      return async (dispatch: Dispatch<Action>) => {
+            dispatch({
+                  type: ActionTypes.ADD_CARD,
+            });
+            try {
+                  const { data } = await cardsInstance.post("/", null, {
+                        params: {
+                              name: title,
+                              idList: idList,
+                        },
+                  });
+
+                  dispatch({
+                        type: ActionTypes.ADD_CARD_SUCCESS,
+                        payload: data,
+                  });
+            } catch (error) {
+                  dispatch({
+                        type: ActionTypes.ADD_CARD_ERROR,
+                        payload: error.message,
                   });
             }
       };

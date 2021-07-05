@@ -26,4 +26,7 @@ export enum ActionTypes {
       GET_ALL_CARDS,
       GET_ALL_CARDS_SUCCESS,
       GET_ALL_CARDS_ERROR,
+      ADD_CARD,
+      ADD_CARD_SUCCESS,
+      ADD_CARD_ERROR,
 }

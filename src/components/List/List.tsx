@@ -2,7 +2,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import Card from "./Card/Card";
-import AddCardForm from "./AddCardForm/AddCardForm";
+import AddCard from "./AddCard/AddCard";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import {
@@ -13,24 +13,21 @@ import {
 } from "./ListStyles";
 
 interface ListProps {
-      id: string;
-      name: string;
-      pos: number;
-      cards: [];
+      list: { [key: string]: any };
 }
 
-const List: React.FC<ListProps> = ({ id, name, pos, cards }): JSX.Element => {
+const List: React.FC<ListProps> = ({ list }): JSX.Element => {
       return (
             <ListElement>
                   <ListHeading>
-                        <ListTitle>{name}</ListTitle>
+                        <ListTitle>{list.name}</ListTitle>
                         <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
                   </ListHeading>
                   <CardsWrapper>
-                        {cards.map((card: any) => {
+                        {list.cards.map((card: any) => {
                               return <Card key={card.id} card={card} />;
                         })}
-                        <AddCardForm />
+                        <AddCard cards={list.cards} listId={list.id} />
                   </CardsWrapper>
             </ListElement>
       );

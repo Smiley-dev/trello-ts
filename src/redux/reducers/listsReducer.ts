@@ -51,6 +51,32 @@ const reducer = (state: ListsState = initialState, action: Action) => {
                         error: action.payload,
                         lists: state.lists,
                   };
+            case ActionTypes.ADD_CARD:
+                  return {
+                        loading: true,
+                        error: null,
+                        lists: state.lists,
+                  };
+            case ActionTypes.ADD_CARD_SUCCESS:
+                  const lists = state.lists;
+                  const newCard = action.payload;
+                  lists.forEach((list: any) => {
+                        if (list.id === newCard.listId) {
+                              list.cards.push(newCard);
+                        }
+                  });
+
+                  return {
+                        loading: false,
+                        error: null,
+                        lists: lists,
+                  };
+            case ActionTypes.ADD_CARD_ERROR:
+                  return {
+                        loading: false,
+                        error: action.payload,
+                        lists: state.lists,
+                  };
             default:
                   return state;
       }

@@ -28,10 +28,25 @@ interface AddListErrorAction {
       payload: string;
 }
 
+interface AddCardAction {
+      type: ActionTypes.ADD_CARD;
+}
+interface AddCardSuccessAction {
+      type: ActionTypes.ADD_CARD_SUCCESS;
+      payload: { [key: string]: any };
+}
+interface AddCardErrorAction {
+      type: ActionTypes.ADD_CARD_ERROR;
+      payload: string;
+}
+
 export type Action =
       | GetAllListsAction
       | GetAllListsSuccessAction
       | GetAllListsErrorAction
       | AddListAction
       | AddListSuccessAction
-      | AddListErrorAction;
+      | AddListErrorAction
+      | AddCardAction
+      | AddCardErrorAction
+      | AddCardSuccessAction;

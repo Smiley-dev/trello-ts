@@ -25,10 +25,6 @@ const Board: React.FC = () => {
 
       useEffect(() => {
             getAllLists(boardId);
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [boardId]);
-
-      useEffect(() => {
             setActiveBoard(boardId);
             // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [boardId]);
@@ -38,15 +34,7 @@ const Board: React.FC = () => {
                   <BoardHeader boardName={boardName} boardId={boardId} />
                   <BoardContainer>
                         {lists.map((list: any) => {
-                              return (
-                                    <List
-                                          key={list.id}
-                                          id={list.id}
-                                          name={list.name}
-                                          pos={list.pos}
-                                          cards={list.cards}
-                                    />
-                              );
+                              return <List key={list.id} list={list} />;
                         })}
                   </BoardContainer>
             </>
